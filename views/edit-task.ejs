@@ -1,0 +1,19 @@
+<%- include('partials/header') %>
+    <div class="container bg-white">
+        <h2 class="text-center mb-4">Edit Task</h2>
+        <form action="/task/edit/<%= task.id %>" method="POST">
+            <div class="mb-3">
+                <input type="text" name="title" class="form-control" value="<%= task.title %>" required>
+            </div>
+            <div class="mb-3">
+                <textarea name="description" class="form-control" rows="3"><%= task.description %></textarea>
+            </div>
+            <div class="mb-3 form-check">
+                <input type="checkbox" name="completed" class="form-check-input" <%= task.completed ? 'checked' : '' %>>
+                <label class="form-check-label">Completed</label>
+            </div>
+            <button type="submit" class="btn btn-custom btn-primary">Update Task</button>
+            <a href="/dashboard" class="btn btn-custom btn-secondary">Cancel</a>
+        </form>
+    </div>
+<%- include('partials/footer') %>
