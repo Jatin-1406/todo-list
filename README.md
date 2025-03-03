@@ -21,31 +21,34 @@ A full-stack web application for managing tasks with secure user authentication 
 
 
 **Install Dependencies:**
+
     npm install
 
-**Create a .env file in the root directory with the following:****
-DB_USER=postgres
-DB_PASSWORD=your_postgres_password
-SESSION_SECRET=your_session_secret(anything)
-GOOGLE_CLIENT_ID=your_google_client_id
-GOOGLE_CLIENT_SECRET=your_google_client_secret
+**Create a .env file in the root directory with the following:**
 
+      DB_USER=postgres
+      DB_PASSWORD=your_postgres_password
+      SESSION_SECRET=your_session_secret
+      GOOGLE_CLIENT_ID=your_google_client_id
+      GOOGLE_CLIENT_SECRET=your_google_client_secret
 
 **Run the following SQL to create tables:**
-todo_db    (DB name)
 
-CREATE TABLE users (
+      CREATE DATABASE todo_db;
+      
+      CREATE TABLE users (
     id SERIAL PRIMARY KEY,
     email VARCHAR(255) UNIQUE NOT NULL,
     password VARCHAR(255),
     google_id VARCHAR(255)
-);
+      );
 
-CREATE TABLE tasks (
+      CREATE TABLE tasks (
     id SERIAL PRIMARY KEY,
     user_id INTEGER REFERENCES users(id),
     title VARCHAR(255) NOT NULL,
     description TEXT,
     completed BOOLEAN DEFAULT false,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);
+      );
+
